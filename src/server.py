@@ -269,7 +269,12 @@ def listen(seconds: float = 10) -> dict:
     seconds = max(3.0, min(30.0, seconds))
     result = audio.analyze(audio.record(seconds))
     result["patch_name"] = dev.patch_name()
-    if result["is_silent"]:
+    if result["digital_silence"]:
+        result["hint"] = ("Nothing was captured. Most likely the player was not playing yet (the noise suppressor "
+                          "outputs pure silence). Ask them to play during the whole recording. If they were playing, "
+                          "macOS may be blocking the microphone: System Settings > Privacy & Security > Microphone > "
+                          "allow Claude.")
+    elif result["is_silent"]:
         result["hint"] = "Almost no sound was captured. Was the player playing? Check guitar volume and cables."
     if _last_listen:
         result["change_vs_previous"] = {

@@ -22,10 +22,6 @@ def _device(kind):
 def record(seconds):
     audio = sd.rec(int(seconds * RATE), samplerate=RATE, channels=2, device=_device("input"), dtype="float32")
     sd.wait()
-    if not np.any(audio):
-        raise NoAudio(
-            "The recording came back completely silent. Allow microphone access for Claude in "
-            "System Settings > Privacy & Security > Microphone, then try again.")
     return audio
 
 
@@ -66,6 +62,7 @@ def analyze(audio):
         "pauses_percent": round(100 * len(gaps) / len(levels)),
         "clipped": bool((np.abs(audio) > 0.988).any()),
         "is_silent": playing < -70,
+        "digital_silence": not np.any(audio),
     }
 
 
