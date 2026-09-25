@@ -1,5 +1,6 @@
 """GT-1 Conversational: an MCP server that lets Claude shape BOSS GT-1 tones by conversation."""
 import functools
+import unicodedata
 import json
 import sys
 import time
@@ -52,6 +53,10 @@ def friendly(fn):
             return {"ok": False, "problem": str(e)}
         except (KeyError, ValueError) as e:
             return {"ok": False, "problem": e.args[0] if e.args else str(e)}
+        except Exception as e:  # noqa: BLE001
+            dev.close()
+            return {"ok": False, "problem": f"Unexpected problem talking to the GT-1 ({type(e).__name__}: {e}). "
+                                            "Try again; if it repeats, unplug and replug the USB cable."}
     return wrapper
 
 
@@ -166,7 +171,8 @@ def rename_patch(name: str) -> dict:
     the change reached the GT-1."""
     m = pmap()
     before_raw = dev.read_patch()
-    text = name[:16].ljust(16)
+    plain = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()  # display is ASCII only
+    text = plain[:16].ljust(16)
     dev.write(list(m.patch["PATCH NAME1"].address), list(text.encode("ascii", "replace")))
     _history.append((f"rename to {name[:16]}", before_raw))
     return {"ok": True, "patch_name": dev.patch_name(), "saved": False}
@@ -313,7 +319,8 @@ def match_volume(target_dbfs: float = -31.0, max_seconds: float = 40) -> dict:
         if last and last[0] != level and abs(playing - last[1]) > 0.3:
             db_per_step = max(0.1, min(2.0, abs((playing - last[1]) / (level - last[0]))))
         last = (level, playing)
-        level = int(max(0, min(100, level + round(err / db_per_step))))
+        step = round(err / db_per_step)
+        level = int(max(0, min(100, level + min(step, VOLUME_STEP))))  # never jump louder than +15 at once
         addr, data = m.encode("PREAMP A: LEVEL", level)
         dev.write(addr, data)
     return {"ok": hits >= 2, "preamp_level": {"before": start_level, "after": level}, "log": log,
