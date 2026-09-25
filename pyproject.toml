@@ -1,0 +1,12 @@
+[project]
+name = "gt1-conversational"
+version = "0.1.0"
+description = "Shape BOSS GT-1 tones by talking to Claude"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.2.0,<2",
+    "mido>=1.3",
+    "python-rtmidi>=1.5",
+    "sounddevice>=0.4.6",
+    "numpy>=1.26",
+]

@@ -1,0 +1,101 @@
+{
+  "manifest_version": "0.4",
+  "name": "gt1-conversational",
+  "display_name": "GT-1 Conversational",
+  "version": "0.1.0",
+  "description": "Shape tones on your BOSS GT-1 by talking to Claude: ask for a song, say what sounds off, and hear it change.",
+  "long_description": "Connect a BOSS GT-1 over USB and talk to Claude about your tone. Ask for the sound of a song, say it needs more drive or sounds muddy, and the change is applied live on the pedal. Claude can also listen through the GT-1's USB audio to measure loudness and noise, level your patches, clean up string noise, and run a metronome.\n\nSafety is built in: volume rises in small steps, nothing overwrites a saved patch without asking, every change can be undone, and every save keeps a backup.\n\nRequirements: a BOSS GT-1, its USB driver, and BOSS TONE STUDIO for GT-1 installed (it is read for the parameter map and does not need to be open; keep it closed while using this extension).\n\nIndependent project, not affiliated with BOSS or Roland Corporation.",
+  "author": {
+    "name": "Allan Kirsten",
+    "url": "https://allankirsten.com"
+  },
+  "icon": "icon.png",
+  "server": {
+    "type": "uv",
+    "entry_point": "src/server.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "${__dirname}",
+        "src/server.py"
+      ]
+    }
+  },
+  "tools": [
+    {
+      "name": "gt1_status",
+      "description": "Check the connection, the loaded patch and unsaved changes"
+    },
+    {
+      "name": "get_current_tone",
+      "description": "Readable summary of every block in the loaded patch"
+    },
+    {
+      "name": "describe_parameters",
+      "description": "List parameter names, values and available models for a block"
+    },
+    {
+      "name": "adjust_tone",
+      "description": "Change parameters live, with small volume steps"
+    },
+    {
+      "name": "rename_patch",
+      "description": "Rename the loaded patch so the change shows on the display"
+    },
+    {
+      "name": "undo_last_change",
+      "description": "Undo the last change made in the conversation"
+    },
+    {
+      "name": "list_patches",
+      "description": "Names of the 99 user patches"
+    },
+    {
+      "name": "load_patch",
+      "description": "Switch patches, asking before discarding unsaved work"
+    },
+    {
+      "name": "save_patch",
+      "description": "Save to a slot after confirmation, with backup and verification"
+    },
+    {
+      "name": "backup_all_patches",
+      "description": "Back up all 99 user patches to a file"
+    },
+    {
+      "name": "listen",
+      "description": "Record the GT-1 over USB and measure loudness, brightness and noise"
+    },
+    {
+      "name": "match_volume",
+      "description": "Level the patch live while you play"
+    },
+    {
+      "name": "calibrate_noise_gate",
+      "description": "Clean string noise between phrases while you play"
+    },
+    {
+      "name": "metronome_control",
+      "description": "Start or stop a quiet click through the GT-1"
+    }
+  ],
+  "keywords": [
+    "guitar",
+    "boss",
+    "gt-1",
+    "midi",
+    "tone",
+    "multi-effects"
+  ],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": [
+      "darwin"
+    ],
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  }
+}
