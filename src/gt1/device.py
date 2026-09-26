@@ -11,6 +11,7 @@ DEVICE_ID = 0x00
 MODEL = [0x00, 0x00, 0x00, 0x30]
 RQ1, DT1 = 0x11, 0x12
 CURRENT_PATCH = [0x00, 0x01, 0x00, 0x00]
+EDITOR_MODE = [0x7F, 0x00, 0x00, 0x01]  # without it the GT-1 ignores setup/system requests
 
 
 class NotConnected(RuntimeError):
@@ -47,6 +48,7 @@ class GT1:
             try:
                 self.out = mido.open_output(names[0])
                 self.inp = mido.open_input([n for n in mido.get_input_names() if "GT-1" in n][0])
+                self._editor_mode()
                 return
             except Exception as e:  # noqa: BLE001
                 last = e
@@ -59,13 +61,26 @@ class GT1:
                 p.close()
         self.inp = self.out = None
 
+    def _editor_mode(self):
+        """Same handshake BOSS TONE STUDIO does. Must be repeated if the GT-1 was power-cycled."""
+        self.write(EDITOR_MODE, [1])
+        time.sleep(0.2)
+
     # raw I/O ----------------------------------------------------------------
     def _drain(self):
         for _ in self.inp.iter_pending():
             pass
 
     def read(self, addr, size, timeout=2.0):
-        """RQ1. Returns a list of `size` bytes (None where the GT-1 did not answer)."""
+        """RQ1. Returns a list of `size` bytes (None where the GT-1 did not answer).
+        If nothing comes back, re-sends the editor handshake once and retries."""
+        result = self._read_once(addr, size, timeout)
+        if all(b is None for b in result):
+            self._editor_mode()
+            result = self._read_once(addr, size, timeout)
+        return result
+
+    def _read_once(self, addr, size, timeout):
         self.connect()
         self._drain()
         body = list(addr) + to_addr(size)
