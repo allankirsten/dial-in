@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from mcp.server.fastmcp import FastMCP  # noqa: E402
 
-from gt1 import audio  # noqa: E402
+from gt1 import audio, updates  # noqa: E402
 from gt1.device import GT1, NotConnected, tone_studio_running  # noqa: E402
 from gt1.params import (BLOCKS, CACHE_DIR, TYPE_PARAMS, TYPES, USER_SLOTS, VOLUME_PARAMS,  # noqa: E402
                         VOLUME_STEP, MapNotFound, ParamMap)
@@ -24,6 +24,7 @@ How to work with the player:
 - Volume matters (neighbors, ears). Level parameters rise at most 15 per call. When in doubt, use listen or match_volume instead of guessing.
 - Nothing is saved until save_patch. Always tell the player when work is unsaved. Never overwrite a slot without showing what is in it and getting a yes.
 - Keep replies short: what changed, from what to what, and what to try next.
+- If gt1_status reports update_available, mention it once in a short line with the version and the link, then carry on. Never push it again in the same conversation.
 """
 
 mcp = FastMCP("gt1-conversational", instructions=INSTRUCTIONS)
@@ -101,7 +102,8 @@ def gt1_status() -> dict:
     unsaved, slot = _unsaved()
     return {"ok": True, "connected": True, "slot": f"U{slot:02d}", "patch_name": dev.patch_name(),
             "unsaved_changes": unsaved, "undo_steps_available": len(_history),
-            "metronome": f"{metronome.bpm} BPM" if metronome.bpm else "off", "warnings": _warnings()}
+            "metronome": f"{metronome.bpm} BPM" if metronome.bpm else "off", "warnings": _warnings(),
+            **({"update_available": u} if (u := updates.check()) else {})}
 
 
 @mcp.tool()

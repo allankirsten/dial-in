@@ -20,7 +20,10 @@
         "--directory",
         "${__dirname}",
         "src/server.py"
-      ]
+      ],
+      "env": {
+        "DIALIN_CHECK_UPDATES": "${user_config.check_updates}"
+      }
     }
   },
   "tools": [
@@ -96,6 +99,15 @@
     ],
     "runtimes": {
       "python": ">=3.10"
+    }
+  },
+  "user_config": {
+    "check_updates": {
+      "type": "boolean",
+      "title": "Check for new versions",
+      "description": "Once per session, read a small signed file from allankirsten.com to tell you when a new version is out. Nothing about you or your pedal is sent.",
+      "default": true,
+      "required": false
     }
   }
 }
