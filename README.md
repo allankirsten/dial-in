@@ -1,4 +1,6 @@
-# GT-1 Conversational
+# Dial In for BOSS GT
+
+Say the tone. Your pedal dials it in.
 
 Shape tones on a BOSS GT-1 by talking to Claude. Ask for the sound of a song, say it needs more drive or sounds muddy, and hear the pedal change while you play.
 
@@ -33,10 +35,22 @@ Shape tones on a BOSS GT-1 by talking to Claude. Ask for the sound of a song, sa
 
 ## Install
 
-1. Download `gt1-conversational.mcpb`.
+1. Download `dial-in.mcpb` from the [latest release](https://github.com/allankirsten/dial-in/releases/latest).
 2. Double-click it and choose **Install** in Claude Desktop.
 3. Connect the GT-1 and ask Claude: "check my GT-1".
 4. The first time Claude listens, macOS asks for microphone access for Claude. Allow it: that is how the GT-1's USB audio is recorded.
+
+## Updates
+
+Once per session the extension reads a small public file that says whether a newer version exists, and Claude mentions it once with the link. The file is signed with an offline Ed25519 key and ignored unless the signature checks out. Nothing about you or your pedal is sent. Turn it off in the extension settings (**Check for new versions**).
+
+To update, download the new `dial-in.mcpb` and open it: it replaces the old version and keeps your patch backups (`~/Library/Application Support/Dial In/backups`).
+
+Coming from **GT-1 Conversational** (0.1.x)? Remove it in Claude Desktop (Settings > Extensions) before installing Dial In. Your backups move to the new folder on first run.
+
+## Privacy
+
+See [PRIVACY.md](PRIVACY.md). Short version: everything runs on your Mac; the only network request is the signed version check above.
 
 ## Build from source
 
@@ -45,6 +59,10 @@ uv sync
 npx @anthropic-ai/mcpb pack
 ```
 
-## Notes
+## Feedback
 
-Independent project by [Allan Kirsten](https://allankirsten.com). Not affiliated with BOSS or Roland Corporation. BOSS and GT-1 are trademarks of Roland Corporation.
+Bugs, ideas and "which pedal next" go to [Issues](https://github.com/allankirsten/dial-in/issues).
+
+## License and notes
+
+MIT, see [LICENSE](LICENSE). Independent project by [Allan Kirsten](https://allankirsten.com/lab/dial-in). Not affiliated with BOSS or Roland Corporation. BOSS and GT-1 are trademarks of Roland Corporation. The GT-1 parameter map belongs to Roland and is never included here: it is read from BOSS TONE STUDIO on your own machine.

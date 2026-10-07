@@ -21,7 +21,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
 from .params import CACHE_DIR
 
-LATEST_URL = "https://allankirsten.com/labs/dial-in/latest.json"
+LATEST_URL = "https://allankirsten.com/lab/dial-in/latest.json"
 # Public half of the release key. The private half stays offline (macOS Keychain on the release Mac).
 PUBLIC_KEYS = {
     "release-2026-1": "b2ZfdqqNstHX2MsqQMcuJJokZTQdrDCwBtecrdckOk0=",

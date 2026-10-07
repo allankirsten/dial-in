@@ -19,7 +19,8 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 SERVICE, ACCOUNT = "dial-in-release-key", "release-2026-1"
-DOWNLOAD_URL = "https://allankirsten.com/labs/dial-in/download"
+# Until the site route that logs origin exists, point straight at the latest GitHub release.
+DOWNLOAD_URL = "https://github.com/allankirsten/dial-in/releases/latest"
 OUT = Path(__file__).resolve().parents[1] / "dist" / "latest.json"
 
 
