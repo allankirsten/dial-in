@@ -2,6 +2,10 @@
 
 Say the tone. Your pedal dials it in.
 
+**Program a BOSS GT-1 with AI, just by talking.** Dial In is a free, open source Claude Desktop extension (MCP server) that builds BOSS GT-1 patches from plain language: the sound of a song, an artist, an amp or just a feeling. Claude writes amp, drive and effects to the pedal over USB and keeps tweaking as you play. No menus, no BOSS Tone Studio editing, no settings to copy by hand.
+
+Product page: [allankirsten.com/lab/dial-in](https://allankirsten.com/en/lab/dial-in) · Em português: [allankirsten.com/lab/dial-in](https://allankirsten.com/lab/dial-in)
+
 Shape tones on a BOSS GT-1 by talking to Claude. Ask for the sound of a song, say it needs more drive or sounds muddy, and hear the pedal change while you play.
 
 > "I want to play the Knee Socks solo" → Muff Fuzz into a Vox-style amp, subtle analog delay.
@@ -65,4 +69,4 @@ Bugs, ideas and "which pedal next" go to [Issues](https://github.com/allankirste
 
 ## License and notes
 
-MIT, see [LICENSE](LICENSE). Independent project by [Allan Kirsten](https://allankirsten.com/lab/dial-in). Not affiliated with BOSS or Roland Corporation. BOSS and GT-1 are trademarks of Roland Corporation. The GT-1 parameter map belongs to Roland and is never included here: it is read from BOSS TONE STUDIO on your own machine.
+MIT, see [LICENSE](LICENSE). Made by [Allan Kirsten](https://allankirsten.com), designer and product leader ([LinkedIn](https://www.linkedin.com/in/allankirsten)), as part of his Lab. Not affiliated with BOSS or Roland Corporation. BOSS and GT-1 are trademarks of Roland Corporation. The GT-1 parameter map belongs to Roland and is never included here: it is read from BOSS TONE STUDIO on your own machine.

@@ -9,7 +9,7 @@
     "name": "Allan Kirsten",
     "url": "https://allankirsten.com"
   },
-  "homepage": "https://allankirsten.com/lab/dial-in",
+  "homepage": "https://allankirsten.com/en/lab/dial-in",
   "documentation": "https://github.com/allankirsten/dial-in#readme",
   "support": "https://github.com/allankirsten/dial-in/issues",
   "repository": {
@@ -104,9 +104,14 @@
     "guitar",
     "boss",
     "gt-1",
-    "midi",
+    "boss-gt-1",
+    "patches",
     "tone",
-    "multi-effects"
+    "guitar-tone",
+    "multi-effects",
+    "midi",
+    "sysex",
+    "mcp"
   ],
   "license": "MIT",
   "privacy_policies": [
