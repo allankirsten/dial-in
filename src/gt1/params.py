@@ -66,6 +66,9 @@ for _k in ("THRESHOLD", "RELEASE"):
 VOLUME_PARAMS = {"PREAMP A: LEVEL", "PREAMP B: LEVEL", "PATCH LEVEL", "OD/DS: EFFECT LEVEL", "COMP: LEVEL",
                  "FOOT VOLUME: LEVEL"}
 VOLUME_STEP = 15
+# Hard ceiling per call even when the player asks for much louder. Text Claude reads on the web
+# (or anywhere else) could try to talk it into a big jump; this keeps that from reaching the ears.
+VOLUME_BIG_STEP = 30
 
 # Human-readable blocks for summaries: (label, on/off parameter, type parameter, key parameters)
 BLOCKS = [
