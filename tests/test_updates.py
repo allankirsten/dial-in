@@ -26,7 +26,7 @@ KEYS = {"k1": pub(key)}
 
 def envelope(signer=key, key_id="k1", tamper=False, **over):
     payload = {"seq": NOW, "issued_at": NOW, "expires_at": NOW + 86400, "version": "0.2.0",
-               "notes": "Faster patch loading", "download_url": "https://allankirsten.com/labs/dial-in/download"}
+               "notes": "Faster patch loading", "download_url": "https://allankirsten.com/lab/gt-pilot/download"}
     payload.update(over)
     body = json.dumps(payload).encode()
     sig = signer.sign(body)

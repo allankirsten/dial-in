@@ -20,7 +20,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 SERVICE, ACCOUNT = "dial-in-release-key", "release-2026-1"
 # Until the site route that logs origin exists, point straight at the latest GitHub release.
-DOWNLOAD_URL = "https://github.com/allankirsten/dial-in/releases/latest"
+DOWNLOAD_URL = "https://github.com/allankirsten/gt-pilot/releases/latest"
 OUT = Path(__file__).resolve().parents[1] / "dist" / "latest.json"
 
 

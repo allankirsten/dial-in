@@ -1,4 +1,4 @@
-"""Dial In: an MCP server that lets Claude shape BOSS GT-1 tones by conversation."""
+"""GT Pilot: an MCP server that lets Claude shape BOSS GT-1 tones by conversation."""
 import functools
 import re
 import unicodedata
@@ -28,7 +28,7 @@ How to work with the player:
 - If gt1_status reports update_available, mention it once in a short line with the version and the link, then carry on. Never push it again in the same conversation.
 """
 
-mcp = FastMCP("dial-in", instructions=INSTRUCTIONS)
+mcp = FastMCP("gt-pilot", instructions=INSTRUCTIONS)
 dev = GT1()
 metronome = audio.Metronome()
 _map = None

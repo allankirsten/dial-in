@@ -15,13 +15,16 @@ APP_CANDIDATES = [
     os.path.expanduser("~/Applications/BOSS_TONE_STUDIO_for_GT1.app"),
 ]
 MAP_IN_APP = "Contents/Resources/_assets/data/addressmap_gt.json"
-CACHE_DIR = Path.home() / "Library" / "Application Support" / "Dial In"
-_OLD_CACHE_DIR = Path.home() / "Library" / "Application Support" / "GT-1 Conversational"  # name before 0.2.0
-if _OLD_CACHE_DIR.is_dir() and not CACHE_DIR.exists():
-    try:
-        _OLD_CACHE_DIR.rename(CACHE_DIR)  # carry patch backups and the cached map over to the new name
-    except OSError:
-        pass
+_SUPPORT = Path.home() / "Library" / "Application Support"
+CACHE_DIR = _SUPPORT / "GT Pilot"
+# Earlier names: "GT-1 Conversational" (0.1.x), "Dial In" (0.2.x). On first run the newest old folder
+# moves to the new name, carrying patch backups and the cached map with it.
+for _old in (_SUPPORT / "Dial In", _SUPPORT / "GT-1 Conversational"):
+    if _old.is_dir() and not CACHE_DIR.exists():
+        try:
+            _old.rename(CACHE_DIR)
+        except OSError:
+            pass
 
 EDIT_BUFFER = [0x60, 0x00, 0x00, 0x00]
 PATCH_SIZE = 0x10 * 128 + 0x7F  # 2175 bytes, 60 00 00 00 .. 60 00 10 7E

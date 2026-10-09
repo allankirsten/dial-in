@@ -21,7 +21,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
 from .params import CACHE_DIR
 
-LATEST_URL = "https://allankirsten.com/lab/dial-in/latest.json"
+LATEST_URL = "https://allankirsten.com/lab/gt-pilot/latest.json"
 # Public half of the release key. The private half stays offline (macOS Keychain on the release Mac).
 PUBLIC_KEYS = {
     "release-2026-1": "b2ZfdqqNstHX2MsqQMcuJJokZTQdrDCwBtecrdckOk0=",
@@ -104,7 +104,7 @@ def verify(envelope_bytes, keys=None, now=None, last_seq=0):
 def _fetch(url=None):
     url = url or LATEST_URL
     opener = urllib.request.build_opener(_NoRedirect)
-    req = urllib.request.Request(url, headers={"User-Agent": "dial-in-update-check"})
+    req = urllib.request.Request(url, headers={"User-Agent": "gt-pilot-update-check"})
     with opener.open(req, timeout=TIMEOUT) as r:
         if r.status != 200:
             raise Rejected(f"http {r.status}")

@@ -1,10 +1,10 @@
-# Dial In for BOSS GT
+# GT Pilot for BOSS
 
-Say the tone. Your pedal dials it in.
+You play. It flies the pedalboard.
 
-**Program a BOSS GT-1 with AI, just by talking.** Dial In is a free, open source Claude Desktop extension (MCP server) that builds BOSS GT-1 patches from plain language: the sound of a song, an artist, an amp or just a feeling. Claude writes amp, drive and effects to the pedal over USB and keeps tweaking as you play. No menus, no BOSS Tone Studio editing, no settings to copy by hand.
+**Program a BOSS GT-1 with AI, just by talking.** GT Pilot (formerly Dial In) is a free, open source Claude Desktop extension (MCP server) that builds BOSS GT-1 patches from plain language: the sound of a song, an artist, an amp or just a feeling. Claude writes amp, drive and effects to the pedal over USB and keeps tweaking as you play. No menus, no BOSS Tone Studio editing, no settings to copy by hand.
 
-Product page: [allankirsten.com/lab/dial-in](https://allankirsten.com/en/lab/dial-in) · Em português: [allankirsten.com/lab/dial-in](https://allankirsten.com/lab/dial-in)
+Product page: [allankirsten.com/en/lab/gt-pilot](https://allankirsten.com/en/lab/gt-pilot) · Em português: [allankirsten.com/lab/gt-pilot](https://allankirsten.com/lab/gt-pilot)
 
 Shape tones on a BOSS GT-1 by talking to Claude. Ask for the sound of a song, say it needs more drive or sounds muddy, and hear the pedal change while you play.
 
@@ -39,7 +39,7 @@ Shape tones on a BOSS GT-1 by talking to Claude. Ask for the sound of a song, sa
 
 ## Install
 
-1. Download `dial-in.mcpb` from the [latest release](https://github.com/allankirsten/dial-in/releases/latest).
+1. Download `gt-pilot.mcpb` from the [latest release](https://github.com/allankirsten/gt-pilot/releases/latest).
 2. Double-click it and choose **Install** in Claude Desktop.
 3. Connect the GT-1 and ask Claude: "check my GT-1".
 4. The first time Claude listens, macOS asks for microphone access for Claude. Allow it: that is how the GT-1's USB audio is recorded.
@@ -48,9 +48,9 @@ Shape tones on a BOSS GT-1 by talking to Claude. Ask for the sound of a song, sa
 
 Once per session the extension reads a small public file that says whether a newer version exists, and Claude mentions it once with the link. The file is signed with an offline Ed25519 key and ignored unless the signature checks out. Nothing about you or your pedal is sent. Turn it off in the extension settings (**Check for new versions**).
 
-To update, download the new `dial-in.mcpb` and open it: it replaces the old version and keeps your patch backups (`~/Library/Application Support/Dial In/backups`).
+To update, download the new `gt-pilot.mcpb` and open it: it replaces the old version and keeps your patch backups (`~/Library/Application Support/GT Pilot/backups`).
 
-Coming from **GT-1 Conversational** (0.1.x)? Remove it in Claude Desktop (Settings > Extensions) before installing Dial In. Your backups move to the new folder on first run.
+Coming from **Dial In** (0.2.x) or **GT-1 Conversational** (0.1.x)? Remove it in Claude Desktop (Settings > Extensions) before installing GT Pilot. Your backups move to the new folder on first run.
 
 ## Privacy
 
@@ -65,7 +65,7 @@ npx @anthropic-ai/mcpb pack
 
 ## Feedback
 
-Bugs, ideas and "which pedal next" go to [Issues](https://github.com/allankirsten/dial-in/issues).
+Bugs, ideas and "which pedal next" go to [Issues](https://github.com/allankirsten/gt-pilot/issues).
 
 ## License and notes
 
